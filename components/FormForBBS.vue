@@ -34,8 +34,8 @@ export default {
     // コメント追加
     addComment() {
       const now = new Date()
-      // コメントをFirestoreへ登録
-      db.collection('messages').add({
+      // コメントをdbへ登録
+      db.collection('comments').add({
         content: this.inputComment,
         avatar:
           'https://picsum.photos/50?image=' +

@@ -54,6 +54,8 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
 import BBS from '~/components/BBS.vue'
 import FormForBBS from '~/components/FormForBBS.vue'
 
+console.log('messages', BBS.firestore)
+
 export default {
   components: {
     Logo,
