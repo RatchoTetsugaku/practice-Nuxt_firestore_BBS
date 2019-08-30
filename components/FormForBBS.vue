@@ -34,14 +34,23 @@ export default {
     // コメント追加
     addComment() {
       const now = new Date()
+      console.log('コメントをdbへ登録します');
+      
       // コメントをdbへ登録
-      db.collection('comments').add({
-        content: this.inputComment,
-        avatar:
-          'https://picsum.photos/50?image=' +
-          (Math.floor(Math.random() * 400) + 1),
-        createdAt: now
-      })
+      db.collection('comments')
+        .add({
+          content: this.inputComment,
+          avatar:
+            'https://picsum.photos/50?image=' +
+            (Math.floor(Math.random() * 400) + 1),
+          createdAt: now
+        })
+        .then(doc => {
+          console.log(`登録に成功しました (${doc.id})`)
+        })
+        .catch(error => {
+          console.log(`登録に失敗しました (${error})`)
+        })
       // ダイアログを閉じる
       this.hideCreateForm()
     },

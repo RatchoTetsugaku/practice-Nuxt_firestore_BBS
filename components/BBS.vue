@@ -1,6 +1,6 @@
 <template>
   <v-list>
-    test
+    essdfsdfasdasdasdas
     <template v-for="(comment, index) in comments">
       <v-list-tile :key="index" avatar>
         <v-list-tile-avatar>
@@ -22,29 +22,25 @@
 <script>
 import { db } from '~/plugins/firebase.js'
 
+console.log(
+  process.env.FB_API_KEY,
+  process.env.FB_AUTH_DOMAIN,
+  process.env.FB_DATABASE_URL,
+  process.env.FB_PROJECTID,
+  process.env.FB_STORAGE_BUCKET,
+  process.env.FB_MESSAGING_SENDER_ID
+)
+
 export default {
   name: 'BBS',
   data: () => ({
     comments: []
   }),
   firestore() {
-    // return {
-    //   comments: db.collection('comments').orderBy('createdAt', 'desc')
-    // }
-    db.collection('comments')
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          let data = {
-            avater: doc.avater,
-            content: doc.data().content,
-            createdAt: doc.data().createdAt
-          }
-          this.comments.push(data)
-        })
-      })
-      console.log('asdafsdfasdfasdfsad');
-      
+    return {
+      comments: db.collection('comments').orderBy('createdAt', 'desc')
+      // comments: db.collection('comments').doc('uBqkISFQ0F191cgGOsy1').orderBy('createdAt', 'desc')
+    }
   }
 }
 </script>
